@@ -1,0 +1,14 @@
+{
+  "merits": {
+    "Catlike Balance": "You possess an innately perfect sense of balance. Characters with this Merit reduce difficulties of all balance- related rolls (e.g., Dexterity + Athletics to walk along a narrow ledge) by two.",
+    "Language": "You know a language in addition to your native one. You can take this Merit multiple times, each reflecting a different language.",
+    "Enchanting Voice": "There is something about your voice that others cannot ignore. When you command, they are cowed. When you seduce, they swoon. Whether thundering, soothing, persuading, or simply talking, your voice commands attention. The difficulties of all rolls involving the use of the voice to persuade, charm, or command are reduced by two.",
+    "Iron Will": "When you are determined and your mind is set, nothing can thwart you from your goals. Characters using Dementation, Dominate, or any other mind-altering magic, spell, or Thaumaturgy path against your character are at +3 difficulty."
+  },
+  "flaws": {
+    "Lady of the Night": "In your presence lights dim, tiny flames extinguish, and shadows cling to you or languidly move about with a surreal unlife, making it impossible to pass as anything other than inhuman. The particular shadow you cast is a malicious entity with a will of its own. It lashes out at friends and enemies alike, tearing at the scenery, and snarling at passers-by. These effects can be suppressed for a scene by spending a point of Willpower",
+    "Vengeful": "You have a score to settle, incurred either during your mortal days or after the Embrace. You are obsessed with taking your revenge on an individual or group, and it is your overriding priority in any situation where you encounter the object of your revenge. You may temporarily resist your need for vengeance by spending a Willpower point.",
+    "Infamous Sire": "Your sire was, and perhaps still is, distrusted and disliked by many of the city’s Kindred. As a result, you are distrusted and disliked as well.",
+    "Deep Sleeper": "When you sleep, it is very difficult for you to awaken. The difficulty of any roll to awaken during the day is increased by two."
+  }
+}

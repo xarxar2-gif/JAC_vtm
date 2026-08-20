@@ -1,0 +1,13 @@
+{
+  "name": "juliette-calvet-character-sheet",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Lasombra character sheet — static site",
+  "scripts": {
+    "build:css": "sass styles.scss styles.css --style=expanded --no-source-map",
+    "watch:css": "sass --watch styles.scss:styles.css --style=expanded --no-source-map"
+  },
+  "devDependencies": {
+    "sass": "^1.103.0"
+  }
+}
