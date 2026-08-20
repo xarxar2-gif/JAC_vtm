@@ -56,5 +56,16 @@
   "backgrounds": [
     { "name": "Resources", "pts": "3pt" },
     { "name": "Generation", "pts": "2pt (12th)" }
-  ]
+  ],
+
+  "contacts": [],
+
+  "inventory": [],
+
+  "haven": {
+    "name": "",
+    "location": "",
+    "security": "",
+    "description": ""
+  }
 }

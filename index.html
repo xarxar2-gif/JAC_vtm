@@ -202,6 +202,184 @@
     margin-top:2px;
   }
 
+  /* ---------- TABS ---------- */
+  .tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin:36px 0 0;
+    border-bottom:1px solid rgba(169,134,58,0.25);
+  }
+  .tab-btn{
+    background:none;
+    border:none;
+    cursor:pointer;
+    font-family:'Cinzel', serif;
+    font-size:0.82rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+    padding:14px 20px 15px;
+    position:relative;
+    white-space:nowrap;
+    transition:color 0.25s;
+  }
+  .tab-btn:hover{ color:var(--ink-bright); }
+  .tab-btn.active{ color:var(--ink-bright); }
+  .tab-btn.active::after{
+    content:"";
+    position:absolute; left:14px; right:14px; bottom:-1px;
+    height:2px;
+    background:linear-gradient(90deg, transparent, var(--blood-bright), transparent);
+    box-shadow:0 0 8px rgba(156,28,43,0.7);
+  }
+  .tab-panel{ display:none; }
+  .tab-panel.active{ display:block; }
+
+  .subhead{
+    font-size:0.85rem;
+    color:var(--gold);
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  .subhead.spaced{ margin-top:26px; }
+  .prose{ margin:0; line-height:1.65; color:var(--ink); font-size:1.02rem; white-space:pre-line; }
+  .empty-state{ color:var(--ink-dim); font-style:italic; opacity:0.65; }
+
+  .bio-reader{ padding:32px 40px 36px; }
+  .bio-chapter-nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:28px;
+    padding-bottom:22px;
+    border-bottom:1px solid rgba(169,134,58,0.2);
+  }
+  .bio-chapter-nav button{
+    background:none;
+    border:1px solid rgba(169,134,58,0.35);
+    color:var(--ink-dim);
+    font-family:'Cinzel', serif;
+    font-size:0.76rem;
+    letter-spacing:0.08em;
+    padding:7px 14px;
+    border-radius:2px;
+    cursor:pointer;
+    transition:color 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .bio-chapter-nav button:hover{ color:var(--ink-bright); border-color:var(--gold); }
+  .bio-chapter-nav button.active{
+    color:var(--ink-bright);
+    border-color:var(--blood-bright);
+    background:rgba(94,13,23,0.25);
+    box-shadow:0 0 10px rgba(156,28,43,0.35);
+  }
+
+  .bio-chapter-head{ margin-bottom:22px; }
+  .bio-chapter-num{
+    font-family:'Cinzel', serif;
+    color:var(--gold);
+    font-size:0.78rem;
+    letter-spacing:0.26em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .bio-chapter-title{
+    font-family:'UnifrakturMaguntia', 'Cinzel', serif;
+    font-weight:400;
+    font-size:2.1rem;
+    color:var(--ink-bright);
+    letter-spacing:0.02em;
+    line-height:1.2;
+  }
+
+  .bio-chapter-body p{ margin:0 0 16px; line-height:1.75; color:var(--ink); font-size:1.03rem; }
+  .bio-chapter-body p:last-child{ margin-bottom:0; }
+  .bio-chapter-body p:first-of-type::first-letter{
+    font-family:'UnifrakturMaguntia', serif;
+    font-size:2.8rem;
+    float:left;
+    line-height:0.75;
+    padding:8px 10px 0 0;
+    color:var(--blood-bright);
+    text-shadow:0 0 14px rgba(156,28,43,0.5);
+  }
+
+  .bio-pager{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:32px;
+    padding-top:22px;
+    border-top:1px solid rgba(169,134,58,0.2);
+  }
+  .bio-nav-btn{
+    background:none;
+    border:none;
+    cursor:pointer;
+    font-family:'Cinzel', serif;
+    font-size:0.82rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--gold);
+    padding:8px 4px;
+    transition:color 0.2s;
+  }
+  .bio-nav-btn:hover:not(:disabled){ color:var(--ink-bright); }
+  .bio-nav-btn:disabled{ color:var(--ink-dim); opacity:0.35; cursor:default; }
+  .bio-page-indicator{
+    font-family:'Cinzel', serif;
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    color:var(--ink-dim);
+  }
+  .panel .empty-state{ padding:22px 4px; text-align:center; }
+
+  .contacts-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
+    gap:20px;
+  }
+  .contact-card{ padding:20px 22px; }
+  .contact-card .cname{
+    font-family:'Cinzel', serif;
+    font-size:1.05rem;
+    color:var(--ink-bright);
+    letter-spacing:0.03em;
+  }
+  .contact-card .crole{
+    font-size:0.75rem;
+    color:var(--gold);
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    margin-top:5px;
+  }
+  .contact-card .cnotes{
+    margin-top:10px;
+    font-size:0.95rem;
+    color:var(--ink-dim);
+    line-height:1.55;
+  }
+
+  .inv-item{
+    padding:13px 0;
+    border-bottom:1px solid rgba(169,134,58,0.14);
+  }
+  .inv-item:last-child{ border-bottom:none; }
+  .inv-item .iname{
+    font-family:'Cinzel', serif;
+    color:var(--ink-bright);
+    font-size:1rem;
+    letter-spacing:0.02em;
+  }
+  .inv-item .inotes{
+    margin-top:4px;
+    color:var(--ink-dim);
+    font-size:0.92rem;
+    line-height:1.55;
+  }
+
   /* ---------- SECTION FRAMEWORK ---------- */
   .section-title{
     display:flex; align-items:center; gap:16px;
@@ -306,14 +484,23 @@
   .stat-row{
     display:flex;
     align-items:center;
-    justify-content:space-between;
     padding:6px 0;
     font-size:1rem;
   }
-  .stat-row .name{ color:var(--ink); }
+  .stat-row .name{ color:var(--ink); flex-shrink:0; }
   .stat-row.zero .name{ color:var(--ink-dim); opacity:0.55; }
 
-  .dots{ display:flex; gap:5px; flex-shrink:0; margin-left:14px; }
+  .leader{
+    flex:1;
+    height:11px;
+    margin:0 10px;
+    background-image:radial-gradient(circle, rgba(169,134,58,0.45) 1px, transparent 1.3px);
+    background-repeat:repeat-x;
+    background-position:bottom 2px left 1px;
+    background-size:7px 7px;
+  }
+
+  .dots{ display:flex; gap:5px; flex-shrink:0; }
   .dot{
     width:11px; height:11px;
     border-radius:50%;
@@ -468,6 +655,16 @@
     </div>
   </section>
 
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="sheet">Sheet</button>
+    <button class="tab-btn" data-tab="bio">Bio</button>
+    <button class="tab-btn" data-tab="contacts">Contacts</button>
+    <button class="tab-btn" data-tab="inventory">Inventory</button>
+    <button class="tab-btn" data-tab="haven">Haven</button>
+  </nav>
+
+  <div class="tab-panel active" id="tab-sheet">
+
   <div class="section-title"><span class="glyph">&#10022;</span><h2>Attributes</h2></div>
   <div class="triad">
     <div class="panel">
@@ -551,6 +748,45 @@
     </div>
   </div>
 
+  </div>
+
+  <div class="tab-panel" id="tab-bio">
+    <div class="section-title"><span class="glyph">&#10022;</span><h2>Biography</h2></div>
+    <div class="panel bio-reader">
+      <div class="bio-chapter-nav" id="bio-chapter-nav"></div>
+      <div class="bio-chapter-head">
+        <div class="bio-chapter-num" id="bio-chapter-num"></div>
+        <h3 class="bio-chapter-title" id="bio-chapter-title"></h3>
+      </div>
+      <div class="bio-chapter-body" id="bio-chapter-body"></div>
+      <div class="bio-pager">
+        <button class="bio-nav-btn" id="bio-prev">&larr; Previous</button>
+        <span class="bio-page-indicator" id="bio-page-indicator"></span>
+        <button class="bio-nav-btn" id="bio-next">Next &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-contacts">
+    <div class="section-title"><span class="glyph">&#10022;</span><h2>Contacts</h2></div>
+    <div class="contacts-grid" id="contacts-grid"></div>
+  </div>
+
+  <div class="tab-panel" id="tab-inventory">
+    <div class="section-title"><span class="glyph">&#10022;</span><h2>Inventory</h2></div>
+    <div class="panel" style="padding:24px 28px;">
+      <div id="inventory-list"></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-haven">
+    <div class="section-title"><span class="glyph">&#10022;</span><h2>Haven</h2></div>
+    <div class="panel" style="padding:28px 32px;">
+      <div class="identity-grid" id="haven-identity" style="margin-bottom:22px;"></div>
+      <p id="haven-description" class="prose"></p>
+    </div>
+  </div>
+
   <footer>Vampire: The Masquerade &middot; Character Record</footer>
 </div>
 
@@ -570,7 +806,7 @@
     let html = '';
     for(const [name, val] of Object.entries(obj)){
       const zero = val === 0 ? ' zero' : '';
-      html += '<div class="stat-row' + zero + '"><span class="name">' + name + '</span>' + dotsHTML(val, max) + '</div>';
+      html += '<div class="stat-row' + zero + '"><span class="name">' + name + '</span><span class="leader"></span>' + dotsHTML(val, max) + '</div>';
     }
     el.innerHTML = html;
   }
@@ -594,6 +830,69 @@
   }
 
   function text(id, value){ document.getElementById(id).textContent = value; }
+
+  function renderProse(id, value, placeholder){
+    const el = document.getElementById(id);
+    if(value && String(value).trim()){
+      el.textContent = value;
+      el.classList.remove('empty-state');
+    } else {
+      el.textContent = placeholder;
+      el.classList.add('empty-state');
+    }
+  }
+
+  function renderContacts(id, items){
+    const el = document.getElementById(id);
+    if(!items || !items.length){
+      el.innerHTML = '<div class="empty-state">No contacts recorded yet.</div>';
+      return;
+    }
+    let html = '';
+    for(const c of items){
+      html += '<div class="panel contact-card"><div class="cname">' + c.name + '</div>' +
+        (c.role ? '<div class="crole">' + c.role + '</div>' : '') +
+        (c.notes ? '<div class="cnotes">' + c.notes + '</div>' : '') +
+        '</div>';
+    }
+    el.innerHTML = html;
+  }
+
+  function renderInventory(id, items){
+    const el = document.getElementById(id);
+    if(!items || !items.length){
+      el.innerHTML = '<div class="empty-state">No possessions recorded yet.</div>';
+      return;
+    }
+    let html = '';
+    for(const it of items){
+      html += '<div class="inv-item"><div class="iname">' + it.name + '</div>' +
+        (it.notes ? '<div class="inotes">' + it.notes + '</div>' : '') +
+        '</div>';
+    }
+    el.innerHTML = html;
+  }
+
+  function renderHavenIdentity(id, haven){
+    const el = document.getElementById(id);
+    const rows = [['Name', haven.name], ['Location', haven.location], ['Security', haven.security]]
+      .filter(([, v]) => v && String(v).trim());
+    if(!rows.length){ el.style.display = 'none'; return; }
+    let html = '';
+    for(const [k, v] of rows){
+      html += '<div class="id-cell"><div class="k">' + k + '</div><div class="v">' + v + '</div></div>';
+    }
+    el.innerHTML = html;
+  }
+
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
 
   fetch('data.json')
     .then(res => res.json())
@@ -632,12 +931,65 @@
       renderList('merits', data.merits);
       renderList('flaws', data.flaws);
       renderList('backgrounds', data.backgrounds);
+
+      renderContacts('contacts-grid', data.contacts);
+      renderInventory('inventory-list', data.inventory);
+
+      renderHavenIdentity('haven-identity', data.haven || {});
+      renderProse('haven-description', data.haven && data.haven.description, 'No haven description recorded yet.');
     })
     .catch(err => {
       document.body.insertAdjacentHTML('afterbegin',
         '<div style="position:fixed;top:0;left:0;right:0;background:#5e0d17;color:#fff;padding:10px 16px;font-family:sans-serif;font-size:14px;z-index:9999;">' +
         'Could not load data.json (' + err.message + '). If you opened this file directly (file://), browsers block local fetch — serve the folder with a local server instead, e.g. <code>python -m http.server</code> or the VS Code Live Server extension.' +
         '</div>');
+      console.error(err);
+    });
+
+  let bioChapters = [];
+  let bioIndex = 0;
+
+  function renderBioNav(){
+    const nav = document.getElementById('bio-chapter-nav');
+    nav.innerHTML = '';
+    bioChapters.forEach((ch, i) => {
+      const btn = document.createElement('button');
+      btn.textContent = 'Ch. ' + ch.number;
+      btn.addEventListener('click', () => { bioIndex = i; renderBioChapter(); });
+      nav.appendChild(btn);
+    });
+  }
+
+  function renderBioChapter(){
+    const ch = bioChapters[bioIndex];
+    if(!ch) return;
+    text('bio-chapter-num', 'Chapter ' + ch.number);
+    text('bio-chapter-title', ch.title);
+    document.getElementById('bio-chapter-body').innerHTML =
+      ch.paragraphs.map(p => '<p>' + p + '</p>').join('');
+    text('bio-page-indicator', (bioIndex + 1) + ' / ' + bioChapters.length);
+    document.getElementById('bio-prev').disabled = bioIndex === 0;
+    document.getElementById('bio-next').disabled = bioIndex === bioChapters.length - 1;
+    document.querySelectorAll('#bio-chapter-nav button').forEach((b, i) => b.classList.toggle('active', i === bioIndex));
+  }
+
+  document.getElementById('bio-prev').addEventListener('click', () => {
+    if(bioIndex > 0){ bioIndex--; renderBioChapter(); }
+  });
+  document.getElementById('bio-next').addEventListener('click', () => {
+    if(bioIndex < bioChapters.length - 1){ bioIndex++; renderBioChapter(); }
+  });
+
+  fetch('bio.json')
+    .then(res => res.json())
+    .then(bio => {
+      bioChapters = bio.chapters || [];
+      renderBioNav();
+      renderBioChapter();
+    })
+    .catch(err => {
+      document.querySelector('#tab-bio .bio-reader').innerHTML =
+        '<div class="empty-state">Could not load bio.json.</div>';
       console.error(err);
     });
 </script>
