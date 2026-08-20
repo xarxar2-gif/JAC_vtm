@@ -1,0 +1,60 @@
+{
+  "name": "Juliette Amicia Calvet",
+  "clanTag": "Lasombra · Antitribu",
+  "quote": "“When the night falls, I am the shadow that whispers secrets in the dark.”",
+  "concept": "Businesswoman / socialite",
+  "predatorType": "Trapdoor",
+  "clan": "Lasombra (Antitribu)",
+  "generation": "12th",
+  "sire": "Theodore Francisco de Haro (11th gen)",
+  "ambition": "Establish herself as a respected — and feared — power within the Ivory Tower.",
+  "desire": "Enact justice on those who failed her sire.",
+
+  "attributes": {
+    "physical": { "Strength": 1, "Dexterity": 3, "Stamina": 2 },
+    "social": { "Charisma": 3, "Manipulation": 3, "Appearance": 4 },
+    "mental": { "Perception": 2, "Intelligence": 3, "Wits": 3 }
+  },
+
+  "skills": {
+    "talents": {
+      "Alertness": 2, "Athletics": 1, "Brawl": 0, "Dodge": 1, "Empathy": 1,
+      "Expression": 0, "Intimidation": 2, "Leadership": 1, "Streetwise": 0, "Subterfuge": 3
+    },
+    "skills": {
+      "Animal Ken": 0, "Crafts": 0, "Drive": 0, "Etiquette": 2, "Firearms": 0,
+      "Melee": 2, "Performance": 2, "Security": 0, "Stealth": 3, "Survival": 0
+    },
+    "knowledges": {
+      "Academics": 1, "Computer": 1, "Finance": 3, "Investigation": 2, "Law": 3,
+      "Linguistics": 0, "Medicine": 0, "Occult": 1, "Politics": 2, "Science": 0
+    }
+  },
+
+  "disciplines": { "Obtenebrate": 2, "Dominate": 1 },
+  "virtues": { "Conscience": 2, "Self-Control": 3, "Courage": 5 },
+
+  "willpower": { "value": 7, "max": 10 },
+  "humanity": { "value": 6, "max": 10 },
+
+  "meritsPoints": "7pt",
+  "merits": [
+    { "name": "Catlike Balance", "pts": "1pt" },
+    { "name": "Language", "pts": "1pt" },
+    { "name": "Enchanting Voice", "pts": "2pt" },
+    { "name": "Iron Will", "pts": "3pt" }
+  ],
+
+  "flawsPoints": "7pt",
+  "flaws": [
+    { "name": "Lady of the Night", "pts": "3pt" },
+    { "name": "Vengeful", "pts": "2pt" },
+    { "name": "Infamous Sire", "pts": "1pt" },
+    { "name": "Deep Sleeper", "pts": "1pt" }
+  ],
+
+  "backgrounds": [
+    { "name": "Resources", "pts": "3pt" },
+    { "name": "Generation", "pts": "2pt (12th)" }
+  ]
+}

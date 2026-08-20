@@ -1,0 +1,126 @@
+Name: Juliette Amicia Calvet
+Concept: Businesswoman / socialite
+Predator type: Trapdoor
+Ambition: Establish herself as a respected/feared power within the ivory tower.
+Desire: Enact justice on those who failed her sire.
+Sire: Theodore Francisco de Haro (11th gen)
+Generation: 12th
+Clan: Lasombra (antitribu)
+Attributes:
+Physical
+Strength
+1
+Dexterity
+3
+Stamina
+2
+Social
+Charisma
+3
+Manipulation
+3
+Appearance
+4
+Mental
+Perception
+2
+Intelligence
+3
+Wits
+3
+
+
+Skills:
+Talents
+Alertness
+2
+Athletics
+1
+Brawl
+-
+Dodge
+1
+Empathy
+1
+Expression
+-
+Intimidation
+2
+Leadership
+1
+Streetwise
+-
+Subterfuge
+3
+Skills
+Animal ken
+-
+Crafts
+-
+Drive
+-
+Etiquette
+2
+Firearms
+-
+Melee
+2
+Performance
+2
+Security
+-
+Stealth
+3
+Survival
+-
+Knowledge
+Academics
+1
+Computer
+1
+Finance
+3
+Investigation
+2
+Law
+3
+Linguistics
+-
+Medicine
+-
+Occult
+1
+Politics
+2
+Science
+-
+
+Flaws and merits
+Merits — 7 points
+Catlike Balance — 1pt
+Language — 1pt
+Enchanting Voice — 2pt
+Iron Will — 3pt
+Flaws — 7 points
+Lady of the Night — 3pt
+Vengeful — 2pt
+Infamous Sire — 1pt
+Deep Sleeper — 1pt
+Background:
+Resources - 3pt
+Generation - 2pt (12th)
+
+Disciplines:
+
+Obtenebrate: 2
+Dominate: 1
+
+Virtues:
+
+Conscience: 2
+Self control: 3
+Courage: 5
+
+Willpower: 7
+Humanity: 6
+
