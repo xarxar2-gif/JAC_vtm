@@ -15,9 +15,17 @@ function clampInt(v, min){
   return isNaN(n) ? min : Math.max(min, n);
 }
 
-let editing = false;
+// Persisted so a refresh mid-edit (e.g. right after creating a blank
+// character) doesn't silently drop you out of edit mode and hide things
+// like the "add portrait" affordance.
+let editing = localStorage.getItem('vtm.editing') === '1';
 let traits = { merits: {}, flaws: {} };
 let bioIndex = 0;
+
+function setEditing(value){
+  editing = value;
+  localStorage.setItem('vtm.editing', editing ? '1' : '0');
+}
 
 // Some browsers don't reliably blur a focused editable field before a click
 // elsewhere fires (e.g. clicking a button in Safari/Firefox). Force it on
@@ -322,9 +330,6 @@ function renderToolbar(){
   editBtn.classList.toggle('active', editing);
 
   document.getElementById('delete-char-btn').style.display = Store.listCharacters().length > 1 ? '' : 'none';
-
-  const portraitBtn = document.getElementById('portrait-change-btn');
-  if(portraitBtn) portraitBtn.style.display = editing ? '' : 'none';
 }
 
 function render(){
@@ -336,11 +341,18 @@ function render(){
   renderToolbar();
 
   const heroImg = document.querySelector('.hero-img');
-  if(data.portraitUrl){
+  const hasPortrait = !!data.portraitUrl;
+  if(hasPortrait){
     heroImg.style.backgroundImage = "url('" + data.portraitUrl.replace(/'/g, "\\'") + "')";
+    heroImg.classList.remove('no-portrait');
   } else {
     heroImg.style.backgroundImage = '';
+    heroImg.classList.add('no-portrait');
   }
+  const portraitBtn = document.getElementById('portrait-change-btn');
+  portraitBtn.style.display = editing ? '' : 'none';
+  portraitBtn.classList.toggle('portrait-add', !hasPortrait);
+  portraitBtn.textContent = hasPortrait ? 'Change Portrait' : '+';
 
   bindText('hero-clan-tag', data.clanTag, editing ? (v => Store.update(c => { c.clanTag = v; })) : null);
   bindText('hero-name', data.name, editing ? (v => Store.update(c => { c.name = v; })) : null);
@@ -477,18 +489,42 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
   });
 });
 
+function openNewCharacterModal(){
+  const input = document.getElementById('new-character-name-input');
+  input.value = '';
+  document.getElementById('new-character-modal').hidden = false;
+  input.focus();
+}
+function closeNewCharacterModal(){
+  document.getElementById('new-character-modal').hidden = true;
+}
+function confirmNewCharacter(){
+  const input = document.getElementById('new-character-name-input');
+  const name = input.value.trim();
+  if(!name){ input.focus(); return; }
+  Store.createBlank(name);
+  bioIndex = 0;
+  setEditing(true);
+  closeNewCharacterModal();
+  render();
+}
+
+document.getElementById('new-character-confirm').addEventListener('click', confirmNewCharacter);
+document.getElementById('new-character-cancel').addEventListener('click', () => {
+  closeNewCharacterModal();
+  renderToolbar();
+});
+document.getElementById('new-character-name-input').addEventListener('keydown', e => {
+  if(e.key === 'Enter'){ e.preventDefault(); confirmNewCharacter(); }
+});
+document.getElementById('new-character-modal').addEventListener('click', e => {
+  if(e.target.id === 'new-character-modal') document.getElementById('new-character-cancel').click();
+});
+
 document.getElementById('character-select').addEventListener('change', e => {
   const val = e.target.value;
   if(val === '__new__'){
-    const name = prompt('Character name:');
-    if(name && name.trim()){
-      Store.createBlank(name.trim());
-      bioIndex = 0;
-      editing = true;
-      render();
-    } else {
-      renderToolbar();
-    }
+    openNewCharacterModal();
     return;
   }
   Store.switchTo(val);
@@ -497,7 +533,7 @@ document.getElementById('character-select').addEventListener('change', e => {
 });
 
 document.getElementById('edit-toggle').addEventListener('click', () => {
-  editing = !editing;
+  setEditing(!editing);
   render();
 });
 
@@ -505,14 +541,64 @@ document.getElementById('save-toolbar-btn').addEventListener('click', () => {
   Store.exportActive();
 });
 
-document.getElementById('delete-char-btn').addEventListener('click', () => {
-  const chars = Store.listCharacters();
-  if(chars.length <= 1) return;
-  if(confirm('Delete "' + Store.getActive().name + '"? This cannot be undone.')){
-    Store.deleteCharacter(Store.getActive().id);
+document.getElementById('import-toolbar-btn').addEventListener('click', () => {
+  document.getElementById('import-input').click();
+});
+document.getElementById('import-input').addEventListener('change', e => {
+  const file = e.target.files[0];
+  e.target.value = '';
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    let parsed;
+    try{
+      parsed = JSON.parse(reader.result);
+    } catch(err){
+      alert('Could not read that file — it doesn\'t look like valid JSON.');
+      return;
+    }
+    try{
+      Store.importCharacter(parsed);
+    } catch(err){
+      alert(err.message);
+      return;
+    }
     bioIndex = 0;
+    setEditing(false);
     render();
-  }
+  };
+  reader.onerror = () => alert('Could not read that file.');
+  reader.readAsText(file);
+});
+
+function openDeleteCharacterModal(){
+  document.getElementById('delete-character-message').textContent =
+    'Delete "' + Store.getActive().name + '"? This cannot be undone.';
+  document.getElementById('delete-character-modal').hidden = false;
+}
+function closeDeleteCharacterModal(){
+  document.getElementById('delete-character-modal').hidden = true;
+}
+
+document.getElementById('delete-char-btn').addEventListener('click', () => {
+  if(Store.listCharacters().length <= 1) return;
+  openDeleteCharacterModal();
+});
+document.getElementById('delete-character-cancel').addEventListener('click', closeDeleteCharacterModal);
+document.getElementById('delete-character-confirm').addEventListener('click', () => {
+  Store.deleteCharacter(Store.getActive().id);
+  bioIndex = 0;
+  closeDeleteCharacterModal();
+  render();
+});
+document.getElementById('delete-character-modal').addEventListener('click', e => {
+  if(e.target.id === 'delete-character-modal') closeDeleteCharacterModal();
+});
+
+document.addEventListener('keydown', e => {
+  if(e.key !== 'Escape') return;
+  if(!document.getElementById('new-character-modal').hidden) document.getElementById('new-character-cancel').click();
+  else if(!document.getElementById('delete-character-modal').hidden) closeDeleteCharacterModal();
 });
 
 document.getElementById('portrait-change-btn').addEventListener('click', () => {

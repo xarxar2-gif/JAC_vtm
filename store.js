@@ -100,15 +100,14 @@ const Store = (function(){
     if(readChar(id)) setActiveId(id);
   }
 
-  function createBlank(name){
-    const id = 'char-' + Date.now().toString(36);
+  function blankSkeleton(name){
     const attributes = {};
     for(const cat in ATTRIBUTE_SCHEMA) attributes[cat] = zeroed(ATTRIBUTE_SCHEMA[cat]);
     const skills = {};
     for(const cat in SKILL_SCHEMA) skills[cat] = zeroed(SKILL_SCHEMA[cat]);
 
-    const char = {
-      id,
+    return {
+      id: null,
       name: name || 'New Character',
       portraitUrl: '',
       clanTag: '', quote: '', concept: '', predatorType: '', clan: '', generation: '', sire: '',
@@ -126,10 +125,63 @@ const Store = (function(){
       inventory: [],
       haven: { name: '', location: '', security: '', description: '' }
     };
+  }
 
+  function newId(){
+    return 'char-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  }
+
+  function createBlank(name){
+    const char = blankSkeleton(name);
+    char.id = newId();
     writeChar(char);
     const reg = getRegistry();
-    reg.push({ id, name: char.name });
+    reg.push({ id: char.id, name: char.name });
+    saveRegistry(reg);
+    setActiveId(char.id);
+    return char.id;
+  }
+
+  function isPlainObject(v){
+    return v && typeof v === 'object' && !Array.isArray(v);
+  }
+
+  // Merges an imported/partial character over a full blank skeleton so
+  // missing or old-format fields fall back to sane defaults instead of
+  // crashing the renderer. Arrays and primitives are replaced wholesale;
+  // plain objects are merged key-by-key, recursively.
+  function deepMerge(base, override){
+    if(!isPlainObject(override)) return override === undefined ? base : override;
+    const out = Object.assign({}, base);
+    for(const k in override){
+      out[k] = isPlainObject(base[k]) ? deepMerge(base[k], override[k]) : override[k];
+    }
+    return out;
+  }
+
+  // Imports a previously-exported character JSON. If its id collides with
+  // one already in the registry, asks whether to overwrite that character
+  // or bring it in as a separate copy instead.
+  function importCharacter(raw){
+    if(!raw || typeof raw !== 'object' || !raw.name){
+      throw new Error("That file doesn't look like a character sheet.");
+    }
+    const merged = deepMerge(blankSkeleton(raw.name), raw);
+
+    const reg = getRegistry();
+    let id = raw.id;
+    const collision = id && reg.find(c => c.id === id);
+    if(collision){
+      const overwrite = confirm('A character called "' + collision.name + '" already exists with this id.\n\nOK to overwrite it, or Cancel to import this as a separate new character.');
+      if(!overwrite) id = null;
+    }
+    if(!id) id = newId();
+    merged.id = id;
+    writeChar(merged);
+
+    const idx = reg.findIndex(c => c.id === id);
+    if(idx >= 0) reg[idx].name = merged.name;
+    else reg.push({ id, name: merged.name });
     saveRegistry(reg);
     setActiveId(id);
     return id;
@@ -185,7 +237,7 @@ const Store = (function(){
   return {
     init, getActive, save, update,
     listCharacters, switchTo, createBlank, deleteCharacter,
-    exportActive, setPortrait,
+    exportActive, importCharacter, setPortrait,
     ATTRIBUTE_SCHEMA, SKILL_SCHEMA, VIRTUE_SCHEMA
   };
 })();

@@ -120,6 +120,122 @@ body::after {
   background: rgba(94, 13, 23, 0.5);
   border-color: var(--blood-bright);
 }
+.portrait-change-btn.portrait-add {
+  left: 50%;
+  top: 50%;
+  bottom: auto;
+  transform: translate(-50%, calc(-50% - 42px));
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  padding: 0;
+  font-size: 2rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(7, 7, 10, 0.6);
+  border: 1px dashed var(--gold);
+}
+.portrait-change-btn.portrait-add:hover {
+  background: rgba(94, 13, 23, 0.4);
+  border-style: solid;
+  border-color: var(--blood-bright);
+}
+
+/* ---------- MODAL ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5, 3, 6, 0.75);
+  backdrop-filter: blur(2px);
+}
+.modal-overlay[hidden] {
+  display: none;
+}
+
+.modal {
+  width: 340px;
+  max-width: 90vw;
+  padding: 32px 36px;
+  background: linear-gradient(155deg, var(--panel) 0%, #0c0a0f 100%);
+  border: 1px solid rgba(169, 134, 58, 0.4);
+  border-radius: 6px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.modal-title {
+  font-family: "Cinzel", serif;
+  font-size: 1.1rem;
+  color: var(--ink-bright);
+  letter-spacing: 0.06em;
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.modal-message {
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin: 0 0 24px;
+}
+
+.modal-input {
+  display: block;
+  width: 100%;
+  background: var(--bg-black);
+  border: 1px solid rgba(169, 134, 58, 0.35);
+  color: var(--ink-bright);
+  border-radius: 3px;
+  padding: 10px 12px;
+  font-family: "EB Garamond", serif;
+  font-size: 1rem;
+  margin-bottom: 22px;
+}
+.modal-input:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-btn-secondary, .modal-btn-primary {
+  font-family: "Cinzel", serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  padding: 8px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.modal-btn-secondary {
+  background: none;
+  border: 1px solid rgba(169, 134, 58, 0.35);
+  color: var(--ink-dim);
+}
+.modal-btn-secondary:hover {
+  border-color: var(--gold);
+  color: var(--ink-bright);
+}
+
+.modal-btn-primary {
+  background: rgba(94, 13, 23, 0.25);
+  border: 1px solid var(--blood-bright);
+  color: var(--ink-bright);
+}
+.modal-btn-primary:hover {
+  background: rgba(94, 13, 23, 0.4);
+  box-shadow: 0 0 10px rgba(156, 28, 43, 0.4);
+}
 
 body.editing [contenteditable=true] {
   cursor: text;
@@ -298,10 +414,25 @@ h1, h2, h3 {
 .hero-img {
   position: absolute;
   inset: 0;
-  background-image: url("juliette.PNG");
   background-size: cover;
   background-position: top center;
   filter: grayscale(0.35) contrast(1.15) brightness(0.72) saturate(0.9);
+}
+.hero-img.no-portrait {
+  background-image: none !important;
+  background: radial-gradient(ellipse at center, rgba(59, 31, 77, 0.28), transparent 70%), var(--bg-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-img.no-portrait::after {
+  content: "No Portrait";
+  font-family: "Cinzel", serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  opacity: 0.5;
 }
 
 .hero-img-fade {
